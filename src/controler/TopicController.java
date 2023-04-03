@@ -26,4 +26,7 @@ public class TopicController {
     public List<Topic> getTopicByName(String name){
         return topicRepositoryImp.getTopicByName(name);
     }
+    public Topic searchTopicById(Integer id){
+        return topicRepositoryImp.searchTopicById(id);
+    }
 }

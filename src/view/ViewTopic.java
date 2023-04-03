@@ -1,12 +1,13 @@
 package view;
 
 import controler.TopicController;
+import model.Topic;
 import org.nocrala.tools.texttablefmt.BorderStyle;
 import org.nocrala.tools.texttablefmt.CellStyle;
 import org.nocrala.tools.texttablefmt.ShownBorders;
 import org.nocrala.tools.texttablefmt.Table;
 
-import java.util.Scanner;
+import java.util.List;
 
 public class ViewTopic {
     private final TopicController topicController;
@@ -15,7 +16,7 @@ public class ViewTopic {
         this.topicController = new TopicController();
     }
 
-    public  Table viewTopic(){
+    public void view(List<Topic> list){
         CellStyle Style=new CellStyle(CellStyle.HorizontalAlign.center);
         Table table=new Table(4, BorderStyle.UNICODE_ROUND_BOX, ShownBorders.ALL);
         table.addCell("            Topic Information          ",Style,4);
@@ -23,7 +24,7 @@ public class ViewTopic {
         table.addCell("       Name      ",Style);
         table.addCell("    Description   ",Style);
         table.addCell("       Status        ",Style);
-        topicController.getAllTopic().forEach(
+        list.forEach(
                 topic -> {
                     table.addCell(topic.getId()+"",Style);
                     table.addCell(topic.getName(),Style);
@@ -31,10 +32,10 @@ public class ViewTopic {
                     table.addCell(topic.getStatus()+"",Style);
                 }
         );
-        table.addCell("Total Record :"+topicController.getAllTopic().size(),Style,4);
-        return table;
+        table.addCell("Total Records :"+list.size(),Style,4);
+        System.out.println(table.render());
     }
-    public  Table viewTopicByName(String name){
+    public void view(Topic topic){
         CellStyle Style=new CellStyle(CellStyle.HorizontalAlign.center);
         Table table=new Table(4, BorderStyle.UNICODE_ROUND_BOX, ShownBorders.ALL);
         table.addCell("            Topic Information          ",Style,4);
@@ -42,15 +43,11 @@ public class ViewTopic {
         table.addCell("       Name      ",Style);
         table.addCell("    Description   ",Style);
         table.addCell("       Status        ",Style);
-        topicController.getTopicByName(name).forEach(
-                topic -> {
-                    table.addCell(topic.getId()+"",Style);
-                    table.addCell(topic.getName(),Style);
-                    table.addCell(topic.getDescription(),Style);
-                    table.addCell(topic.getStatus()+"",Style);
-                }
-        );
-        table.addCell("Total Records :"+topicController.getTopicByName(name).size(),Style,4);
-        return table;
+        table.addCell(topic.getId()+"",Style);
+        table.addCell(topic.getName(),Style);
+        table.addCell(topic.getDescription(),Style);
+        table.addCell(topic.getStatus()+"",Style);
+        table.addCell("Total Records : 1",Style,4);
+        System.out.println(table.render());
     }
 }

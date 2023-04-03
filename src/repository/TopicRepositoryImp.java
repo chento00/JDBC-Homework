@@ -149,4 +149,29 @@ public class TopicRepositoryImp implements TopicRepository{
         }
         return null;
     }
+
+    @Override
+    public Topic searchTopicById(Integer id) {
+        try{
+            if(searchById(id).equals(1)){
+                String sql="SELECT *FROM topics WHERE id=?";
+                PreparedStatement statement=connectionDB.dataSource().getConnection().prepareStatement(sql);
+                statement.setInt(1,id);
+                ResultSet resultSet=statement.executeQuery();
+                while (resultSet.next()){
+                    return new Topic(
+                      resultSet.getInt("id"),
+                      resultSet.getString("name"),
+                      resultSet.getString("des"),
+                      resultSet.getBoolean("status")
+                    );
+                }
+            }else{
+                System.out.println("search not found");
+            }
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
 }

@@ -10,6 +10,6 @@ public interface TopicRepository {
      void updateTopicById(Integer id , Scanner scanner);
      Integer searchById(Integer id);
      void deleteTopicById(Integer id);
-
      List<Topic> getTopicByName(String name);
+     Topic searchTopicById(Integer id);
 }

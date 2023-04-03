@@ -2,7 +2,9 @@ package view;
 
 import controler.TopicController;
 import exception.DbException;
+import model.Topic;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class WelcomeView {
@@ -19,6 +21,7 @@ public class WelcomeView {
         System.out.println("3. Update Topic By ID");
         System.out.println("4. Delete Topic By ID");
         System.out.println("5. Select Topic By Name");
+        System.out.println("6. Select Topic By Id");
     }
     public  void ShowWelcome(){
         Scanner scanner=new Scanner(System.in);
@@ -28,7 +31,7 @@ public class WelcomeView {
             Integer opt= DbException.getIntegerValue("Choose one option : ",new Scanner(System.in));
             switch (opt){
                 case 1:{
-                    System.out.println(viewTopic.viewTopic().render());;
+                    viewTopic.view(topicController.getAllTopic());
                 }break;
                 case 2:{
                     topicController.insertTopic(new Scanner(System.in));
@@ -44,7 +47,11 @@ public class WelcomeView {
                 case 5:{
                     System.out.print("Enter Name to search : ");
                     String name=scanner.nextLine();
-                    System.out.println(viewTopic.viewTopicByName(name).render());
+                    viewTopic.view(topicController.getTopicByName(name));
+                }break;
+                case 6:{
+                    Integer topicId=DbException.getIntegerValue("Enter ID To Search : ",new Scanner(System.in));
+                    viewTopic.view(topicController.searchTopicById(topicId));
                 }break;
             }
         }while (true);
