@@ -29,30 +29,30 @@ public class WelcomeView {
         do {
             showMenu();
             Integer opt= DbException.getIntegerValue("Choose one option : ",new Scanner(System.in));
-            switch (opt){
-                case 1:{
+            switch (opt) {
+                case 1 -> {
                     viewTopic.view(topicController.getAllTopic());
-                }break;
-                case 2:{
+                }
+                case 2 -> {
                     topicController.insertTopic(new Scanner(System.in));
-                }break;
-                case 3:{
-                    Integer topicId=DbException.getIntegerValue("Enter ID To Search For Update : ",new Scanner(System.in));
-                    topicController.updateTopicById(topicId,new Scanner(System.in));
-                }break;
-                case 4:{
-                    Integer topicId=DbException.getIntegerValue("Enter ID To Search For Delete : ",new Scanner(System.in));
+                }
+                case 3 -> {
+                    Integer topicId = DbException.getIntegerValue("Enter ID To Search For Update : ", new Scanner(System.in));
+                    topicController.updateTopicById(topicId, new Scanner(System.in));
+                }
+                case 4 -> {
+                    Integer topicId = DbException.getIntegerValue("Enter ID To Search For Delete : ", new Scanner(System.in));
                     topicController.deleteTopicById(topicId);
-                }break;
-                case 5:{
+                }
+                case 5 -> {
                     System.out.print("Enter Name to search : ");
-                    String name=scanner.nextLine();
+                    String name = scanner.nextLine();
                     viewTopic.view(topicController.getTopicByName(name));
-                }break;
-                case 6:{
-                    Integer topicId=DbException.getIntegerValue("Enter ID To Search : ",new Scanner(System.in));
+                }
+                case 6 -> {
+                    Integer topicId = DbException.getIntegerValue("Enter ID To Search : ", new Scanner(System.in));
                     viewTopic.view(topicController.searchTopicById(topicId));
-                }break;
+                }
             }
         }while (true);
     }

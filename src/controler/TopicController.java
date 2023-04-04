@@ -1,32 +1,32 @@
 package controler;
 
 import model.Topic;
-import repository.TopicRepositoryImp;
+import service.TopicServiceImp;
 import java.util.List;
 import java.util.Scanner;
 
 public class TopicController {
-    private final TopicRepositoryImp topicRepositoryImp;
+    private final TopicServiceImp topicService;
 
     public TopicController() {
-        this.topicRepositoryImp = new TopicRepositoryImp();
+        this.topicService = new TopicServiceImp();
     }
     public List<Topic> getAllTopic(){
-        return  topicRepositoryImp.selectTopic();
+        return  topicService.selectTopic();
     }
     public void insertTopic(Scanner scanner){
-        topicRepositoryImp.insertTopic( scanner);
+        topicService.insertTopic( scanner);
     }
     public void updateTopicById(Integer id,Scanner scanner){
-        topicRepositoryImp.updateTopicById(id,scanner);
+        topicService.updateTopicById(id,scanner);
     }
     public void deleteTopicById(Integer id){
-        topicRepositoryImp.deleteTopicById(id);
+        topicService.deleteTopicById(id);
     }
     public List<Topic> getTopicByName(String name){
-        return topicRepositoryImp.getTopicByName(name);
+        return topicService.getTopicByName(name);
     }
     public Topic searchTopicById(Integer id){
-        return topicRepositoryImp.searchTopicById(id);
+        return topicService.searchTopicById(id);
     }
 }

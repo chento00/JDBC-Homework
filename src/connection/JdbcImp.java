@@ -6,8 +6,7 @@ import javax.sql.DataSource;
 
 public class JdbcImp {
 
-    public JdbcImp() {
-    }
+    public JdbcImp() {}
 
     public DataSource dataSource(){
         PGSimpleDataSource dataSource=new PGSimpleDataSource();

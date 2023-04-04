@@ -15,4 +15,7 @@ public class DbQuery {
         }
         return "INSERT INTO "+table+" (id,"+labell+") VALUES(default,"+temp+")";
     }
+    public String deleteQuery(String table,String fld){
+        return "DELETE FROM "+table+" WHERE "+fld;
+    }
 }
